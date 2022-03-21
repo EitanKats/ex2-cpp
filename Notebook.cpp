@@ -31,8 +31,4 @@ namespace ariel {
         return "";
     }
 
-    void Notebook::setPageMap(map<int, map<int, vector<char>>> pageMap){
-
-    };
-
 }
