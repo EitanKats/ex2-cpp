@@ -17,7 +17,8 @@ namespace ariel {
     }
 
     void
-    Notebook::write(unsigned int pageNum, unsigned int rowNum, unsigned int colNum, Direction direction, string* text) {
+    Notebook::write(unsigned int pageNum, unsigned int rowNum, unsigned int colNum, Direction direction,
+                    string const &text) {
 
     }
 

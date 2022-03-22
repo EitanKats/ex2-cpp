@@ -27,7 +27,7 @@ namespace ariel {
     public:
         Notebook();
 
-        void write(unsigned int pageNum, unsigned int rowNum, unsigned int colNum, Direction direction, string* text);
+        void write(unsigned int pageNum, unsigned int rowNum, unsigned int colNum, Direction direction, string const &text);
 
         string read(unsigned int pageNum, unsigned int rowNum, unsigned int colNum, Direction direction,
                     unsigned int bufferSize);
