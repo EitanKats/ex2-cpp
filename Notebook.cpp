@@ -45,7 +45,6 @@ namespace ariel {
         if (pageIter != this->pageMap.end()) {
             std::cout << "Element Found - ";
         }
-        cout << "zab" << eraseCharacter << pageNum << endl;
     }
 
 }
