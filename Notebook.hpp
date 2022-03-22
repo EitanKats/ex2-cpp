@@ -5,6 +5,7 @@
 #include "string"
 #include <vector>
 #include "unordered_map"
+#include "set"
 
 #ifndef EX2_CPP_NOTEBOOK_HPP
 #define EX2_CPP_NOTEBOOK_HPP
@@ -13,6 +14,7 @@ using ariel::Direction;
 using std::string;
 using std::unordered_map;
 using std::vector;
+using std::set;
 
 namespace ariel {
 
@@ -24,10 +26,14 @@ namespace ariel {
     private:
 
         unordered_map<unsigned int, unordered_map<unsigned int, vector<char>>> pageMap;
+        unordered_map<unsigned int, set<unsigned int>> rowsMapping;
+        set<unsigned int> availablePages;
+
     public:
         Notebook();
 
-        void write(unsigned int pageNum, unsigned int rowNum, unsigned int colNum, Direction direction, string const &text);
+        void
+        write(unsigned int pageNum, unsigned int rowNum, unsigned int colNum, Direction direction, string const &text);
 
         string read(unsigned int pageNum, unsigned int rowNum, unsigned int colNum, Direction direction,
                     unsigned int bufferSize);

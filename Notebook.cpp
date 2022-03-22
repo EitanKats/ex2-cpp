@@ -4,16 +4,20 @@
 #include "Notebook.hpp"
 #include <vector>
 #include "unordered_map"
+#include "set"
 #include <iostream>
 
 using std::unordered_map;
 using std::vector;
+using std::set;
 using std::cout;
 using std::endl;
 namespace ariel {
 
     Notebook::Notebook() {
         this->pageMap = unordered_map<unsigned int, unordered_map<unsigned int, vector<char>>>();
+        this->availablePages = set<unsigned int>();
+        this->rowsMapping = unordered_map<unsigned int, set<unsigned int>>();
     }
 
     void
