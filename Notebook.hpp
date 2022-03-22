@@ -4,25 +4,26 @@
 #include "Direction.hpp"
 #include "string"
 #include <vector>
-#include "map"
+#include "unordered_map"
 
 #ifndef EX2_CPP_NOTEBOOK_HPP
 #define EX2_CPP_NOTEBOOK_HPP
 
 using ariel::Direction;
 using std::string;
-using std::map;
+using std::unordered_map;
 using std::vector;
 
 namespace ariel {
 
-    static const int emptySpotChar = '_';
+    static const char emptySpotChar = '_';
     static const int lineLength = 100;
-    static const int eraseCharacter = '~';
+    static const char eraseCharacter = '~';
 
     class Notebook {
     private:
-        map<int, map<int, vector<char>>> *pageMap;
+
+        unordered_map<unsigned int, unordered_map<unsigned int, vector<char>>> pageMap;
     public:
         Notebook();
 
@@ -34,7 +35,7 @@ namespace ariel {
         void erase(unsigned int pageNum, unsigned int rowNum, unsigned int colNum, Direction direction,
                    unsigned int bufferSize);
 
-        string show(int pageNum);
+        void show(unsigned pageNum);
 
     };
 }

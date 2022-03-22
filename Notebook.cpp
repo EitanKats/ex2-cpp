@@ -3,13 +3,17 @@
 //
 #include "Notebook.hpp"
 #include <vector>
-#include "map"
-using std::map;
+#include "unordered_map"
+#include <iostream>
+
+using std::unordered_map;
 using std::vector;
+using std::cout;
+using std::endl;
 namespace ariel {
 
     Notebook::Notebook() {
-        this->pageMap = new map<int, map<int, vector<char>>>();
+        this->pageMap = unordered_map<unsigned int, unordered_map<unsigned int, vector<char>>>();
     }
 
     void
@@ -27,8 +31,16 @@ namespace ariel {
 
     }
 
-    string Notebook::show(int pageNum) {
-        return "";
+    void Notebook::show(unsigned pageNum) {
+
+        unordered_map<unsigned int, unordered_map<unsigned int, vector<char>>>::iterator got;
+
+        got = this->pageMap.find(pageNum);
+
+        if (got != this->pageMap.end()) {
+            std::cout << "Element Found - ";
+        }
+        cout << "zab" << eraseCharacter << pageNum << endl;
     }
 
 }
