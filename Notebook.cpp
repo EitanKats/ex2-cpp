@@ -15,28 +15,28 @@ using std::endl;
 namespace ariel {
 
     void
-    Notebook::write(unsigned int pageNum, unsigned int rowNum, unsigned int colNum, Direction direction,
+    Notebook::write(int pageNum, int rowNum, int colNum, Direction direction,
                     string const &text) {
 
     }
 
-    string Notebook::read(unsigned int pageNum, unsigned int rowNum, unsigned int colNum, Direction direction,
-                          unsigned int bufferSize) {
+    string Notebook::read(int pageNum, int rowNum, int colNum, Direction direction,
+                          int bufferSize) {
 
-        unordered_map<unsigned int, unordered_map<unsigned int, vector<char>>>::iterator pageIter;
+        unordered_map<int, unordered_map<int, vector<char>>>::iterator pageIter;
 
         pageIter = this->pageMap.find(pageNum);
         return "";
     }
 
-    void Notebook::erase(unsigned int pageNum, unsigned int rowNum, unsigned int colNum, Direction direction,
-                         unsigned int bufferSize) {
+    void Notebook::erase(int pageNum, int rowNum, int colNum, Direction direction,
+                         int bufferSize) {
 
     }
 
-    void Notebook::show(unsigned int pageNum) {
+    void Notebook::show(int pageNum) {
 
-        unordered_map<unsigned int, unordered_map<unsigned int, vector<char>>>::iterator pageIter;
+        unordered_map<int, unordered_map<int, vector<char>>>::iterator pageIter;
 
         pageIter = this->pageMap.find(pageNum);
 

@@ -25,21 +25,21 @@ namespace ariel {
     class Notebook {
     private:
 
-        unordered_map<unsigned int, unordered_map<unsigned int, vector<char>>> pageMap;
-        unordered_map<unsigned int, set<unsigned int>> rowsMapping;
-        set<unsigned int> availablePages;
+        unordered_map<int, unordered_map<int, vector<char>>> pageMap;
+        unordered_map<int, set<int>> rowsMapping;
+        set<int> availablePages;
 
     public:
         void
-        write(unsigned int pageNum, unsigned int rowNum, unsigned int colNum, Direction direction, string const &text);
+        write(int pageNum, int rowNum, int colNum, Direction direction, string const &text);
 
-        string read(unsigned int pageNum, unsigned int rowNum, unsigned int colNum, Direction direction,
-                    unsigned int bufferSize);
+        string read(int pageNum, int rowNum, int colNum, Direction direction,
+                    int bufferSize);
 
-        void erase(unsigned int pageNum, unsigned int rowNum, unsigned int colNum, Direction direction,
-                   unsigned int bufferSize);
+        void erase(int pageNum, int rowNum, int colNum, Direction direction,
+                   int bufferSize);
 
-        void show(unsigned int pageNum);
+        void show(int pageNum);
 
     };
 }

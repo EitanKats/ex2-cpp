@@ -24,6 +24,22 @@ TEST_CASE ("Bad input - pass line boundaries") {
             CHECK_THROWS(notebook.erase(0, 1, 95, Direction::Horizontal, 7));
 }
 
+TEST_CASE ("Bad input - negative page, row or column supplied for writing") {
+            CHECK_THROWS(notebook.write(-1, 1, 1, Direction::Horizontal, "a"));
+            CHECK_THROWS(notebook.write(0, -1, 1, Direction::Vertical, "b"));
+            CHECK_THROWS(notebook.write(0, 1, -1, Direction::Vertical, "c"));
+}
+
+TEST_CASE ("Bad input - negative page, row or column supplied for reading") {
+            CHECK_THROWS(notebook.read(-1, 1, 1, Direction::Horizontal, 1));
+            CHECK_THROWS(notebook.read(0, -1, 1, Direction::Vertical, 1));
+            CHECK_THROWS(notebook.read(0, 1, -1, Direction::Vertical, 1));
+}
+
+TEST_CASE ("Bad input - negative page for showing") {
+    CHECK_THROWS(notebook.show(-1));
+}
+
 TEST_CASE ("Bad input - end of string character") {
             CHECK_THROWS(notebook.write(0, 1, 1, Direction::Horizontal, "\0"));
             CHECK_THROWS(notebook.write(0, 1, 1, Direction::Vertical, "\0"));
@@ -64,8 +80,15 @@ TEST_CASE ("Attempt to write on deleted text") {
 
 TEST_CASE ("write and read tests") {
     string firstText = "Hello world";
+    string textFromNotebook;
     notebook.write(1, 0, 0, Direction::Horizontal, "Hello world");
-    string textFromNotebook = notebook.read(1, 0, 0, Direction::Horizontal, 11);
+    textFromNotebook = notebook.read(1, 0, 0, Direction::Horizontal, 11);
+
             CHECK(firstText == textFromNotebook);
 
+    notebook.write(1, 1, 0, Direction::Vertical, "Hello world");
+
+    textFromNotebook = notebook.read(1, 1, 0, Direction::Vertical, 11);
+
+            CHECK(firstText == textFromNotebook);
 }
