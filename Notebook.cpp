@@ -17,12 +17,16 @@ namespace ariel {
     }
 
     void
-    Notebook::write(unsigned int pageNum, unsigned int rowNum, unsigned int colNum, Direction direction, string text) {
+    Notebook::write(unsigned int pageNum, unsigned int rowNum, unsigned int colNum, Direction direction, string* text) {
 
     }
 
     string Notebook::read(unsigned int pageNum, unsigned int rowNum, unsigned int colNum, Direction direction,
                           unsigned int bufferSize) {
+
+        unordered_map<unsigned int, unordered_map<unsigned int, vector<char>>>::iterator pageIter;
+
+        pageIter = this->pageMap.find(pageNum);
         return "";
     }
 
@@ -33,11 +37,11 @@ namespace ariel {
 
     void Notebook::show(unsigned pageNum) {
 
-        unordered_map<unsigned int, unordered_map<unsigned int, vector<char>>>::iterator got;
+        unordered_map<unsigned int, unordered_map<unsigned int, vector<char>>>::iterator pageIter;
 
-        got = this->pageMap.find(pageNum);
+        pageIter = this->pageMap.find(pageNum);
 
-        if (got != this->pageMap.end()) {
+        if (pageIter != this->pageMap.end()) {
             std::cout << "Element Found - ";
         }
         cout << "zab" << eraseCharacter << pageNum << endl;
