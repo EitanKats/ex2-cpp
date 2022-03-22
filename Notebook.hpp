@@ -30,8 +30,6 @@ namespace ariel {
         set<unsigned int> availablePages;
 
     public:
-        Notebook();
-
         void
         write(unsigned int pageNum, unsigned int rowNum, unsigned int colNum, Direction direction, string const &text);
 
@@ -41,7 +39,7 @@ namespace ariel {
         void erase(unsigned int pageNum, unsigned int rowNum, unsigned int colNum, Direction direction,
                    unsigned int bufferSize);
 
-        void show(unsigned pageNum);
+        void show(unsigned int pageNum);
 
     };
 }
