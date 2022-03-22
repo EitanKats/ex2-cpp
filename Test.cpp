@@ -21,7 +21,9 @@ TEST_CASE ("Bad input - writing empty line saved character") {
 TEST_CASE ("Bad input - pass line boundaries") {
             CHECK_THROWS(notebook.write(0, 1, 95, Direction::Horizontal, "1234567"));
             CHECK_THROWS(notebook.read(0, 1, 95, Direction::Horizontal, 7));
-            CHECK_THROWS(notebook.erase(0, 1, 95, Direction::Horizontal, 7));
+            CHECK_THROWS(notebook.read(0, 0, 0, Direction::Horizontal, 101));
+            CHECK_THROWS(notebook.erase(0, 0, 0, Direction::Horizontal, 7));
+            CHECK_THROWS(notebook.erase(0, 0, 0, Direction::Horizontal, 101));
 }
 
 TEST_CASE ("Bad input - negative page, row or column supplied for writing") {

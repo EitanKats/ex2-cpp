@@ -1,13 +1,11 @@
 #!make -f
 
-CXX=clang++
+CXX=clang++-9
 CXXFLAGS=-std=c++2a -Werror -Wsign-conversion
 VALGRIND_FLAGS=-v --leak-check=full --show-leak-kinds=all  --error-exitcode=99
 
 SOURCES=Notebook.cpp
 OBJECTS=$(subst .cpp,.o,$(SOURCES))
-
-all : run
 
 run: demo
 	./$^
