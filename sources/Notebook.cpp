@@ -2,6 +2,7 @@
 // Created by Eitan Kats on 21/03/2022.
 //
 #include "Notebook.hpp"
+#include "Page.hpp"
 #include <vector>
 #include "unordered_map"
 #include "set"
@@ -23,7 +24,7 @@ namespace ariel {
     string Notebook::read(int pageNum, int rowNum, int colNum, Direction direction,
                           int bufferSize) {
 
-        unordered_map<int, unordered_map<int, vector<char>>>::iterator pageIter;
+        unordered_map<int, Page>::iterator pageIter;
 
         pageIter = this->pageMap.find(pageNum);
         return "";
@@ -36,7 +37,7 @@ namespace ariel {
 
     void Notebook::show(int pageNum) {
 
-        unordered_map<int, unordered_map<int, vector<char>>>::iterator pageIter;
+        unordered_map<int, Page>::iterator pageIter;
 
         pageIter = this->pageMap.find(pageNum);
 

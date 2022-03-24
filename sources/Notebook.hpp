@@ -1,11 +1,11 @@
 //
 // Created by Eitan Kats on 20/03/2022.
 //
-#include "Direction.hpp"
 #include "string"
-#include <vector>
 #include "unordered_map"
 #include "set"
+#include "Direction.hpp"
+#include "Page.hpp"
 
 #ifndef EX2_CPP_NOTEBOOK_HPP
 #define EX2_CPP_NOTEBOOK_HPP
@@ -13,7 +13,6 @@
 using ariel::Direction;
 using std::string;
 using std::unordered_map;
-using std::vector;
 using std::set;
 
 namespace ariel {
@@ -25,9 +24,7 @@ namespace ariel {
     class Notebook {
     private:
 
-        unordered_map<int, unordered_map<int, vector<char>>> pageMap;
-        unordered_map<int, set<int>> rowsMapping;
-        set<int> availablePages;
+        unordered_map<int, Page> pageMap;
 
     public:
         void
