@@ -17,8 +17,7 @@ using std::set;
 
 namespace ariel {
 
-    static const char emptySpotChar = '_';
-    static const int lineLength = 100;
+
     static const char eraseCharacter = '~';
 
     class Notebook {
@@ -26,6 +25,8 @@ namespace ariel {
 
         unordered_map<int, Page> pageMap;
 
+
+        Page &getPage(int const &pageNum);
 
         void validateAccessParameters(int const &pageNum, int const &rowNum, int const &colNum) {
             if (pageNum < 0 || rowNum < 0 || colNum < 0) throw ("Negative access parameter was provided");
