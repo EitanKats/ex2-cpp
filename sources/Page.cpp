@@ -28,6 +28,10 @@ namespace ariel {
         unsigned int unsignedColNum = (unsigned int) colNum;
         if (direction == Direction::Horizontal) {
             for (string::size_type i = 0; i < text.size(); ++i) {
+                char currCharacter = currRow.at(unsignedColNum + i);
+                if (currCharacter == eraseCharacter){
+                    throw ("Illegal write operation");
+                }
                 currRow.at(unsignedColNum + i) = text.at(i);
             }
         }

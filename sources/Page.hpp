@@ -15,6 +15,7 @@ using std::string;
 namespace ariel {
     static const char emptySpotChar = '_';
     static const int lineLength = 100;
+    static const char eraseCharacter = '~';
 
     class Page {
     private:

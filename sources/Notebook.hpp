@@ -18,8 +18,6 @@ using std::set;
 namespace ariel {
 
 
-    static const char eraseCharacter = '~';
-
     class Notebook {
     private:
 
