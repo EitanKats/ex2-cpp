@@ -20,11 +20,13 @@ namespace ariel {
     private:
         unordered_map<int, vector<char>> rows;
 
-        vector<char> &getRow(int const &rowNum);
+        vector<char> &getRow(int rowNum);
 
     public:
-        void write(int const &rowNum, int const &colNum, Direction direction,
+        void write(int rowNum, int colNum, Direction direction,
                    string const &text);
+
+        string read(int rowNum, int colNum, Direction direction, int bufferSize);
     };
 }
 

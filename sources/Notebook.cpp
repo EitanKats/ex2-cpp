@@ -18,7 +18,7 @@ using std::isspace;
 using std::isprint;
 namespace ariel {
 
-    Page &Notebook::getPage(int const &pageNum) {
+    Page &Notebook::getPage(int pageNum) {
         unordered_map<int, Page>::iterator pageIter = this->pageMap.find(pageNum);
 
         if (pageIter == this->pageMap.end()) {
@@ -29,7 +29,7 @@ namespace ariel {
         return chosenPage;
     }
 
-    void validateHorizontalBufferParams(int const &colNum, size_t const &bufferSize) {
+    void validateHorizontalBufferParams(int colNum, size_t const &bufferSize) {
         unsigned long totalTextSpace = (unsigned int) bufferSize + (unsigned int) colNum;
         if (totalTextSpace > 100) {
             throw ("total buffer is bigger than 100");
@@ -37,7 +37,7 @@ namespace ariel {
     }
 
     void
-    Notebook::validateWriteOperation(int const &pageNum, int const &rowNum, int const &colNum, Direction direction,
+    Notebook::validateWriteOperation(int pageNum, int rowNum, int colNum, Direction direction,
                                      string const &text) {
         Notebook::validateAccessParameters(pageNum, rowNum, colNum);
 
@@ -51,16 +51,16 @@ namespace ariel {
         }
     }
 
-    void Notebook::validateReadOperation(int const &pageNum, int const &rowNum, int const &colNum, Direction direction,
-                                         int const &bufferSize) {
+    void Notebook::validateReadOperation(int pageNum, int rowNum, int colNum, Direction direction,
+                                         int bufferSize) {
         Notebook::validateAccessParameters(pageNum, rowNum, colNum);
         if (direction == Direction::Horizontal) {
             validateHorizontalBufferParams(colNum, (unsigned long) &bufferSize);
         }
     }
 
-    void Notebook::validateEraseOperation(int const &pageNum, int const &rowNum, int const &colNum, Direction direction,
-                                          int const &bufferSize) {
+    void Notebook::validateEraseOperation(int pageNum, int rowNum, int colNum, Direction direction,
+                                          int bufferSize) {
         Notebook::validateAccessParameters(pageNum, rowNum, colNum);
         if (direction == Direction::Horizontal) {
             validateHorizontalBufferParams(colNum, (unsigned long) &bufferSize);
@@ -84,12 +84,12 @@ namespace ariel {
         return "";
     }
 
-    void Notebook::erase(int pageNum, int rowNum, int colNum, Direction direction,
-                         int bufferSize) {
+    void Notebook::erase(int  pageNum, int  rowNum, int  colNum, Direction direction,
+                         int  bufferSize) {
 
     }
 
-    void Notebook::show(int pageNum) {
+    void Notebook::show(int  pageNum) {
 
         Notebook::validateAccessParameters(pageNum);
         unordered_map<int, Page>::iterator pageIter;

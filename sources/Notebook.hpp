@@ -26,24 +26,24 @@ namespace ariel {
         unordered_map<int, Page> pageMap;
 
 
-        Page &getPage(int const &pageNum);
+        Page &getPage(int pageNum);
 
-        void validateAccessParameters(int const &pageNum, int const &rowNum, int const &colNum) {
+        void validateAccessParameters(int pageNum, int rowNum, int colNum) {
             if (pageNum < 0 || rowNum < 0 || colNum < 0) throw ("Negative access parameter was provided");
         }
 
-        void validateAccessParameters(int const &pageNum) {
+        void validateAccessParameters(int pageNum) {
             if (pageNum < 0) throw ("Negative access parameter was provided");
         }
 
-        void validateWriteOperation(int const &pageNum, int const &rowNum, int const &colNum, Direction direction,
+        void validateWriteOperation(int pageNum, int rowNum, int colNum, Direction direction,
                                     string const &text);
 
-        void validateReadOperation(int const &pageNum, int const &rowNum, int const &colNum, Direction direction,
-                                   int const &bufferSize);
+        void validateReadOperation(int pageNum, int rowNum, int colNum, Direction direction,
+                                   int bufferSize);
 
-        void validateEraseOperation(int const &pageNum, int const &rowNum, int const &colNum, Direction direction,
-                                    int const &bufferSize);
+        void validateEraseOperation(int pageNum, int rowNum, int colNum, Direction direction,
+                                    int bufferSize);
 
     public:
         void

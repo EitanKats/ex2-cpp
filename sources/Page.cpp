@@ -10,7 +10,7 @@ using std::string;
 namespace ariel {
 
 
-    vector<char> &Page::getRow(const int &rowNum) {
+    vector<char> &Page::getRow(int rowNum) {
 
         unordered_map<int, vector<char>>::iterator rowIter;
         rowIter = this->rows.find(rowNum);
@@ -23,7 +23,7 @@ namespace ariel {
         return chosenRow;
     }
 
-    void Page::write(const int &rowNum, const int &colNum, Direction direction, const std::string &text) {
+    void Page::write(int rowNum, int colNum, Direction direction, const std::string &text) {
         vector<char> &currRow = getRow(rowNum);
         unsigned int unsignedColNum = (unsigned int) colNum;
         if (direction == Direction::Horizontal) {
@@ -31,6 +31,10 @@ namespace ariel {
                 currRow.at(unsignedColNum + i) = text.at(i);
             }
         }
+    }
+
+    string Page::read(int rowNum, int colNum, Direction direction, int bufferSize) {
+        return "";
     }
 
 }
