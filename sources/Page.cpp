@@ -16,7 +16,7 @@ namespace ariel {
         rowIter = this->rows.find(rowNum);
 
         if (rowIter == this->rows.end()) {
-            this->rows[rowNum] = vector<char>(emptySpotChar, lineLength);
+            this->rows[rowNum] = vector<char>(lineLength, emptySpotChar);
             return this->rows[rowNum];
         }
         vector<char> &chosenRow = rowIter->second;
@@ -29,10 +29,12 @@ namespace ariel {
         if (direction == Direction::Horizontal) {
             for (string::size_type i = 0; i < text.size(); ++i) {
                 char currCharacter = currRow.at(unsignedColNum + i);
-                if (currCharacter == eraseCharacter){
+                if (currCharacter == emptySpotChar) {
+                    currRow.at(unsignedColNum + i) = text.at(i);
+                } else {
                     throw ("Illegal write operation");
                 }
-                currRow.at(unsignedColNum + i) = text.at(i);
+
             }
         }
     }
