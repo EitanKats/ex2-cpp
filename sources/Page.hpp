@@ -36,6 +36,8 @@ namespace ariel {
                    string const &text);
 
         string read(int rowNum, int colNum, Direction direction, int bufferSize);
+
+        void erase(int rowNum, int colNum, Direction direction, int bufferSize);
     };
 }
 

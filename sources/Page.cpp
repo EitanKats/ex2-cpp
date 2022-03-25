@@ -27,7 +27,7 @@ namespace ariel {
         vector<char> &currRow = getRow(rowNum);
         for (string::size_type i = 0; i < text.size(); ++i) {
             char currCharacter = currRow.at((unsigned int) colNum + i);
-            if (currCharacter == emptySpotChar) {
+            if (currCharacter == emptySpotChar || text.at(i) == eraseCharacter) {
                 currRow.at((unsigned int) colNum + i) = text.at(i);
             } else {
                 throw ("Illegal write operation");
@@ -39,7 +39,7 @@ namespace ariel {
         for (string::size_type i = 0; i < text.size(); ++i) {
             vector<char> &currRow = getRow((unsigned int) rowNum + i);
             char currCharacter = currRow.at((unsigned int) colNum);
-            if (currCharacter == emptySpotChar) {
+            if (currCharacter == emptySpotChar || text.at(i) == eraseCharacter) {
                 currRow.at((unsigned int) colNum) = text.at(i);
             } else {
                 throw ("Illegal write operation");
@@ -59,6 +59,13 @@ namespace ariel {
 
     string Page::handleVerticalRead(int rowNum, int colNum, int bufferSize) {
         string textResult = "";
+
+        for (int i = 0; i < bufferSize; ++i) {
+            int nextRowIdx = rowNum + i;
+            vector<char> &currRow = getRow(nextRowIdx);
+            char currCharacter = currRow.at((unsigned int) colNum);
+            textResult.append(1, currCharacter);
+        }
         return textResult;
     }
 
@@ -77,6 +84,11 @@ namespace ariel {
         } else {
             return handleVerticalRead(rowNum, colNum, bufferSize);
         }
+    }
+
+    void Page::erase(int rowNum, int colNum, Direction direction, int bufferSize) {
+        string eraseString = string((unsigned) bufferSize, eraseCharacter);
+        write(rowNum, colNum, direction, eraseString);
     }
 
 }

@@ -54,17 +54,17 @@ namespace ariel {
     void Notebook::validateReadOperation(int pageNum, int rowNum, int colNum, Direction direction,
                                          int bufferSize) {
         Notebook::validateAccessParameters(pageNum, rowNum, colNum);
-        if (direction == Direction::Horizontal) {
-            validateHorizontalBufferParams(colNum, bufferSize);
-        }
+
+        validateHorizontalBufferParams(colNum, bufferSize);
+
     }
 
     void Notebook::validateEraseOperation(int pageNum, int rowNum, int colNum, Direction direction,
                                           int bufferSize) {
         Notebook::validateAccessParameters(pageNum, rowNum, colNum);
-        if (direction == Direction::Horizontal) {
-            validateHorizontalBufferParams(colNum, bufferSize);
-        }
+
+        validateHorizontalBufferParams(colNum, bufferSize);
+
     }
 
     void
@@ -85,6 +85,7 @@ namespace ariel {
     void Notebook::erase(int pageNum, int rowNum, int colNum, Direction direction,
                          int bufferSize) {
         validateEraseOperation(pageNum, rowNum, colNum, direction, bufferSize);
+        return getPage(pageNum).erase(rowNum, colNum, direction, bufferSize);
     }
 
     void Notebook::show(int pageNum) {
