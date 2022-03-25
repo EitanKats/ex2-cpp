@@ -79,9 +79,7 @@ namespace ariel {
                           int bufferSize) {
         validateReadOperation(pageNum, rowNum, colNum, direction, bufferSize);
 
-        unordered_map<int, Page>::iterator pageIter;
-        pageIter = this->pageMap.find(pageNum);
-        return "";
+        return getPage(pageNum).read(rowNum, colNum, direction, bufferSize);
     }
 
     void Notebook::erase(int pageNum, int rowNum, int colNum, Direction direction,

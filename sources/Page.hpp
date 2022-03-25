@@ -23,6 +23,14 @@ namespace ariel {
 
         vector<char> &getRow(int rowNum);
 
+        void handleVerticalWrite(int rowNum, int colNum, const string &text);
+
+        void handleHorizontalWrite(int rowNum, int colNum, const string &text);
+
+        string handleVerticalRead(int rowNum, int colNum, int bufferSize);
+
+        string handleHorizontalRead(int rowNum, int colNum, int bufferSize);
+
     public:
         void write(int rowNum, int colNum, Direction direction,
                    string const &text);

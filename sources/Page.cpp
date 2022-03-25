@@ -23,24 +23,60 @@ namespace ariel {
         return chosenRow;
     }
 
-    void Page::write(int rowNum, int colNum, Direction direction, const std::string &text) {
+    void Page::handleVerticalWrite(int rowNum, int colNum, const string &text) {
         vector<char> &currRow = getRow(rowNum);
-        unsigned int unsignedColNum = (unsigned int) colNum;
-        if (direction == Direction::Horizontal) {
-            for (string::size_type i = 0; i < text.size(); ++i) {
-                char currCharacter = currRow.at(unsignedColNum + i);
-                if (currCharacter == emptySpotChar) {
-                    currRow.at(unsignedColNum + i) = text.at(i);
-                } else {
-                    throw ("Illegal write operation");
-                }
-
+        for (string::size_type i = 0; i < text.size(); ++i) {
+            char currCharacter = currRow.at((unsigned int) colNum + i);
+            if (currCharacter == emptySpotChar) {
+                currRow.at((unsigned int) colNum + i) = text.at(i);
+            } else {
+                throw ("Illegal write operation");
             }
         }
     }
 
+    void Page::handleHorizontalWrite(int rowNum, int colNum, const string &text) {
+        for (string::size_type i = 0; i < text.size(); ++i) {
+            vector<char> &currRow = getRow((unsigned int) rowNum + i);
+            char currCharacter = currRow.at((unsigned int) colNum);
+            if (currCharacter == emptySpotChar) {
+                currRow.at((unsigned int) colNum) = text.at(i);
+            } else {
+                throw ("Illegal write operation");
+            }
+        }
+    }
+
+    string Page::handleHorizontalRead(int rowNum, int colNum, int bufferSize) {
+        string textResult = "";
+        vector<char> &currRow = getRow(rowNum);
+        for (int i = colNum; i < bufferSize; ++i) {
+            char currCharacter = currRow.at((unsigned int) colNum + (unsigned int) i);
+            textResult.append(1, currCharacter);
+        }
+        return textResult;
+    }
+
+    string Page::handleVerticalRead(int rowNum, int colNum, int bufferSize) {
+        string textResult = "";
+        return textResult;
+    }
+
+    void Page::write(int rowNum, int colNum, Direction direction, const string &text) {
+        if (direction == Direction::Horizontal) {
+            handleVerticalWrite(rowNum, colNum, text);
+        } else {
+            handleHorizontalWrite(rowNum, colNum, text);
+        }
+
+    }
+
     string Page::read(int rowNum, int colNum, Direction direction, int bufferSize) {
-        return "";
+        if (direction == Direction::Horizontal) {
+            return handleHorizontalRead(rowNum, colNum, bufferSize);
+        } else {
+            return handleVerticalRead(rowNum, colNum, bufferSize);
+        }
     }
 
 }
