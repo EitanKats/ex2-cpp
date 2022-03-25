@@ -96,3 +96,7 @@ TEST_CASE ("write and read tests") {
 
             CHECK(firstText == textFromNotebook);
 }
+
+TEST_CASE ("write and read tests") {
+    notebook.show(1);
+}

@@ -91,13 +91,7 @@ namespace ariel {
     void Notebook::show(int pageNum) {
 
         Notebook::validateAccessParameters(pageNum);
-        unordered_map<int, Page>::iterator pageIter;
-
-        pageIter = this->pageMap.find(pageNum);
-
-        if (pageIter != this->pageMap.end()) {
-            std::cout << "";
-        }
+        getPage(pageNum).show();
     }
 
 }

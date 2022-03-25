@@ -5,10 +5,12 @@
 #include "unordered_map"
 #include "Direction.hpp"
 #include "string"
+#include "set"
 
 using std::unordered_map;
 using std::vector;
 using std::string;
+using std::set;
 #ifndef EX2_CPP_PAGE_HPP
 #define EX2_CPP_PAGE_HPP
 
@@ -20,6 +22,8 @@ namespace ariel {
     class Page {
     private:
         unordered_map<int, vector<char>> rows;
+        set<int> rowsWithText;
+
 
         vector<char> &getRow(int rowNum);
 
@@ -38,6 +42,8 @@ namespace ariel {
         string read(int rowNum, int colNum, Direction direction, int bufferSize);
 
         void erase(int rowNum, int colNum, Direction direction, int bufferSize);
+
+        void show();
     };
 }
 

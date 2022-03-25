@@ -4,9 +4,12 @@
 #include <Page.hpp>
 #include <vector>
 #include "string"
+#include "iostream"
 
 using std::vector;
 using std::string;
+using std::cout;
+using std::endl;
 namespace ariel {
 
 
@@ -28,6 +31,7 @@ namespace ariel {
         for (string::size_type i = 0; i < text.size(); ++i) {
             char currCharacter = currRow.at((unsigned int) colNum + i);
             if (currCharacter == emptySpotChar || text.at(i) == eraseCharacter) {
+                this->rowsWithText.insert(rowNum);
                 currRow.at((unsigned int) colNum + i) = text.at(i);
             } else {
                 throw ("Illegal write operation");
@@ -40,6 +44,7 @@ namespace ariel {
             vector<char> &currRow = getRow((unsigned int) rowNum + i);
             char currCharacter = currRow.at((unsigned int) colNum);
             if (currCharacter == emptySpotChar || text.at(i) == eraseCharacter) {
+                this->rowsWithText.insert((unsigned int) rowNum + i);
                 currRow.at((unsigned int) colNum) = text.at(i);
             } else {
                 throw ("Illegal write operation");
@@ -89,6 +94,14 @@ namespace ariel {
     void Page::erase(int rowNum, int colNum, Direction direction, int bufferSize) {
         string eraseString = string((unsigned) bufferSize, eraseCharacter);
         write(rowNum, colNum, direction, eraseString);
+    }
+
+    void Page::show() {
+        for (int rowIdx: this->rowsWithText) {
+            vector<char> &currRow = this->getRow(rowIdx);
+            string rowAsStr = string(currRow.begin(), currRow.end());
+            cout << rowIdx << "\t:" << rowAsStr << endl;
+        }
     }
 
 }
