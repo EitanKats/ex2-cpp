@@ -52,8 +52,7 @@ namespace ariel {
 
 
         for (char const &c: text) {
-            if (c == emptySpotChar || c == '\0' || ((bool) isspace(c) && c != ' ') || !(bool) isprint(c) ||
-                c == eraseCharacter)
+            if (c == '\0' || ((bool) isspace(c) && c != ' ') || !(bool) isprint(c) || c == eraseCharacter)
                 throw ("illegal Character");
         }
     }
