@@ -41,7 +41,7 @@ namespace ariel {
 
     void Page::handleHorizontalWrite(int rowNum, int colNum, const string &text) {
         for (string::size_type i = 0; i < text.size(); ++i) {
-            vector<char> &currRow = getRow((unsigned long) rowNum + i);
+            vector<char> &currRow = getRow((unsigned int) rowNum + i);
             char currCharacter = currRow.at((unsigned int) colNum);
             if (currCharacter == emptySpotChar || text.at(i) == eraseCharacter) {
                 this->rowsWithText.insert((unsigned int) rowNum + i);
