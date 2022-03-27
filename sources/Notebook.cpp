@@ -29,11 +29,17 @@ namespace ariel {
         return chosenPage;
     }
 
-    void validateHorizontalBufferParams(int colNum, int bufferSize) {
+    void validateBufferParams(Direction direction, int colNum, int bufferSize) {
         unsigned long totalTextSpace = (unsigned int) bufferSize + (unsigned int) colNum;
-        if (totalTextSpace > 100 || totalTextSpace < 0 || bufferSize < 0) {
-            throw ("Buffer value is bad, should be positive and not pass 100 with respect to column number");
+        if (bufferSize < 0) {
+            throw ("Buffer value is bad");
         }
+        if (direction == Direction::Horizontal) {
+            if (totalTextSpace > 100 || totalTextSpace < 0) {
+                throw ("Buffer value is bad, should be positive and not pass 100 with respect to column number");
+            }
+        }
+
     }
 
     void
@@ -41,12 +47,13 @@ namespace ariel {
                                      string const &text) {
         Notebook::validateAccessParameters(pageNum, rowNum, colNum);
 
-        if (direction == Direction::Horizontal) {
-            validateHorizontalBufferParams(colNum, text.size());
-        }
+
+        validateBufferParams(direction, colNum, text.size());
+
 
         for (char const &c: text) {
-            if (c == emptySpotChar || c == '\0' || ((bool) isspace(c) && c != ' ') || !(bool) isprint(c))
+            if (c == emptySpotChar || c == '\0' || ((bool) isspace(c) && c != ' ') || !(bool) isprint(c) ||
+                c == eraseCharacter)
                 throw ("illegal Character");
         }
     }
@@ -55,7 +62,9 @@ namespace ariel {
                                          int bufferSize) {
         Notebook::validateAccessParameters(pageNum, rowNum, colNum);
 
-        validateHorizontalBufferParams(colNum, bufferSize);
+
+        validateBufferParams(direction, colNum, bufferSize);
+
 
     }
 
@@ -63,7 +72,9 @@ namespace ariel {
                                           int bufferSize) {
         Notebook::validateAccessParameters(pageNum, rowNum, colNum);
 
-        validateHorizontalBufferParams(colNum, bufferSize);
+
+        validateBufferParams(direction, colNum, bufferSize);
+
 
     }
 
