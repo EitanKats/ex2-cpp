@@ -1,7 +1,7 @@
 //
 // Created by Eitan Kats on 24/03/2022.
 //
-#include <Page.hpp>
+#include "Page.hpp"
 #include <vector>
 #include "string"
 #include "iostream"
@@ -41,7 +41,7 @@ namespace ariel {
 
     void Page::handleHorizontalWrite(int rowNum, int colNum, const string &text) {
         for (string::size_type i = 0; i < text.size(); ++i) {
-            vector<char> &currRow = getRow((unsigned int) rowNum + i);
+            vector<char> &currRow = getRow((unsigned long) rowNum + i);
             char currCharacter = currRow.at((unsigned int) colNum);
             if (currCharacter == emptySpotChar || text.at(i) == eraseCharacter) {
                 this->rowsWithText.insert((unsigned int) rowNum + i);
@@ -53,7 +53,7 @@ namespace ariel {
     }
 
     string Page::handleHorizontalRead(int rowNum, int colNum, int bufferSize) {
-        string textResult = "";
+        string textResult;
         vector<char> &currRow = getRow(rowNum);
         for (int i = 0; i < bufferSize; ++i) {
             char currCharacter = currRow.at((unsigned int) colNum + (unsigned int) i);
@@ -63,7 +63,7 @@ namespace ariel {
     }
 
     string Page::handleVerticalRead(int rowNum, int colNum, int bufferSize) {
-        string textResult = "";
+        string textResult;
 
         for (int i = 0; i < bufferSize; ++i) {
             int nextRowIdx = rowNum + i;
@@ -86,9 +86,9 @@ namespace ariel {
     string Page::read(int rowNum, int colNum, Direction direction, int bufferSize) {
         if (direction == Direction::Horizontal) {
             return handleHorizontalRead(rowNum, colNum, bufferSize);
-        } else {
-            return handleVerticalRead(rowNum, colNum, bufferSize);
         }
+        return handleVerticalRead(rowNum, colNum, bufferSize);
+
     }
 
     void Page::erase(int rowNum, int colNum, Direction direction, int bufferSize) {

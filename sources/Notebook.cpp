@@ -35,7 +35,7 @@ namespace ariel {
             throw ("Buffer value is bad");
         }
         if (direction == Direction::Horizontal) {
-            if (totalTextSpace > 100 || totalTextSpace < 0) {
+            if (totalTextSpace > lineLength || totalTextSpace < 0) {
                 throw ("Buffer value is bad, should be positive and not pass 100 with respect to column number");
             }
         }
