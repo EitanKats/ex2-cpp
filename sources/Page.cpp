@@ -55,7 +55,7 @@ namespace ariel {
     string Page::handleHorizontalRead(int rowNum, int colNum, int bufferSize) {
         string textResult = "";
         vector<char> &currRow = getRow(rowNum);
-        for (int i = colNum; i < bufferSize; ++i) {
+        for (int i = 0; i < bufferSize; ++i) {
             char currCharacter = currRow.at((unsigned int) colNum + (unsigned int) i);
             textResult.append(1, currCharacter);
         }
